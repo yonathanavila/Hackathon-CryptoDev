@@ -1,12 +1,38 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Firma digital wallet - Login</title>
+  <link href="{% static 'core/bootstrap.min.css' %}" rel="stylesheet">
+  <script src="{% static 'core/jquery.min.js' %}"></script>
 </head>
 <body>
 <h1>Inicio de Sesión</h1>
-<button>Conectar con Metamask</button>
-<button>Firmar digital de Login</button>
+<section>
+  <h3 class="card-title">
+    Status
+  </h3>
+  <div class="row">
+    <div class="col-sm-4">
+      <p class="info-text alert alert-primary">
+        Network: <span id="network"></span>
+      </p>
+    </div>
+    <div class="col-sm-4">
+      <p class="info-text alert alert-secondary">
+        ChainId: <span id="chainId"></span>
+      </p>
+    </div>
+    <div class="col-sm-4">
+      <p class="info-text alert alert-success">
+        Accounts: <span id="accounts"></span>
+      </p>
+    </div>
+  </div>
+</section>
+<button class="btn btn-primary">Conectar con Metamask</button>
+<button class="btn btn-primary">Firmar digital de Login</button>
+
 </body>
 </html>
