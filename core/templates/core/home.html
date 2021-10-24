@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %}
 {% block content %}{% csrf_token %}
-  <button type="button" class="btn btn-lg btn-block btn-outline-primary" >Reclamar POAP</button>
+  <button type="button" class="btn btn-lg btn-block btn-outline-primary" id="btnReclamar">Reclamar POAP</button>
 {% endblock %}
 {% block script %}
   <script>
@@ -22,19 +22,19 @@
 
       const csrftoken = getCookie('csrftoken');
 
-      function sendCmbSelected(type = "", x = "") {
-
+      $('#btnReclamar').on('click', function () {
           return fetch('{% url 'home' %}', {
               method: 'post',
               body: JSON.stringify({
-                  'value': x,
-                  'type': type,
+                  'value': "hola",
+                  'type': "Hola22",
               }),
               headers: {
                   'Content-Type': 'application/json',
                   'X-CSRFToken': csrftoken
               }
           })
-      }
+      });
+
   </script>
 {% endblock %}

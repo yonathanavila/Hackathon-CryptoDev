@@ -29,4 +29,18 @@ class PoapLink(models.Model):
     db_table = 'PoapLink'
 
   def __str__(self):
-    return 'Link POAP: {} '.format(self.linkpoap)
+    return '{}'.format(self.linkpoap)
+
+
+class Link(models.Model):
+  link = models.CharField(db_column='Link', max_length=5000, default=None, null=True)
+
+  class Meta:
+    db_table = 'Link'
+
+  def save(self, *args, **kwargs):
+    print('save() is called.')
+    super(Link, self).save(*args, **kwargs)
+
+  def __str__(self):
+    return '{}'.format(self.link)

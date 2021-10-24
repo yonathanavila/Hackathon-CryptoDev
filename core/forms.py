@@ -7,6 +7,14 @@ class frmFile(ModelForm):
     model = PoapLink
     fields = '__all__'
 
+    widgets = {
+      'linkpoap': ClearableFileInput(
+        attrs={
+          'class': 'form-control-file mt-3'
+        }
+      )
+    }
+
 
 class frmUserWallet(ModelForm):
   class Meta:
