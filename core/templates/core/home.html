@@ -10,7 +10,6 @@
               const cookies = document.cookie.split(';');
               for (let i = 0; i < cookies.length; i++) {
                   const cookie = cookies[i].trim();
-                  // Does this cookie string begin with the name we want?
                   if (cookie.substring(0, name.length + 1) === (name + '=')) {
                       cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                       break;
@@ -26,8 +25,7 @@
           return fetch('{% url 'home' %}', {
               method: 'post',
               body: JSON.stringify({
-                  'value': "hola",
-                  'type': "Hola22",
+                  'data': "redirect",
               }),
               headers: {
                   'Content-Type': 'application/json',
@@ -35,9 +33,24 @@
               }
           }).then(response => response.json())
               .then(data => {
-                  console.log(data, typeof (data));
-
-                  window.location.href = data[Object.keys(data)[0]];
+                  for (var clave in data) {
+                      if (clave == "error") {
+                          clave = "Error";
+                      }
+                  }
+                  if (clave == "Error") {
+                      console.log("Error");
+                      Swal.fire({
+                          icon: 'error',
+                          title: 'Oops...',
+                          text: 'Ya se reclamo este POA!',
+                          footer: '<a href="">Why do I have this issue?</a>'
+                      });
+                  } else {
+                      console.log(data, typeof (data), data);
+                      window.location.href = data[Object.keys(data)[0]];
+                  }
+                  // window.location.href = data[Object.keys(data)[0]];
               })
               .catch(console.error);
       });

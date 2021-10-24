@@ -11,7 +11,7 @@ import random
 class clsTemplateviewHome(CreateView):
   template_name = "core/firmar/firmar.html"
   form_class = frmUserWallet
-  success_url = reverse_lazy('menu')
+  success_url = reverse_lazy('home')
 
 
 class clsHome(TemplateView):
@@ -21,8 +21,7 @@ class clsHome(TemplateView):
   @staticmethod
   def post(request, *args, **kwargs):
     link = PoapLink.objects.all()
-    lines = ""
-    randomlink = ""
+
     for i in link:
       link = str(i)
     localhost = "http://localhost:8000/media/"
@@ -32,17 +31,22 @@ class clsHome(TemplateView):
       openfile = urlopen(url)
       lines = str(openfile.read()).replace('b', '').replace("'", "")
       lines = lines.split("\\n")
-      for i in lines:
-        print(i)
+      print(lines)
 
       def selectRandom(lines):
         return random.choice(lines)
 
       randomlink = selectRandom(lines)
-      frm = frmLink({'link': lines})
-      data = frm.save_link()
-      print(data, randomlink)
-      return JsonResponse({'data': str(randomlink)})
+      Link_qs = Link.objects.filter(link=randomlink)
+
+      if Link_qs:
+        print("Ya se reclamo este POA")
+        return JsonResponse({'error': "Ya se reclamo este POAP"})
+      else:
+        frm = frmLink({'link': randomlink})
+        data = frm.save_link()
+        print(data)
+        return JsonResponse({'data': str(randomlink)})
 
     except Exception as e:
       print(str(e))

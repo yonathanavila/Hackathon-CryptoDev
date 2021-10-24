@@ -6,6 +6,8 @@
   <title>Firma digital wallet - Login</title>
   <link href="{% static 'core/bootstrap.min.css' %}" rel="stylesheet">
   <script src="{% static 'core/jquery.min.js' %}"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
 <h1>Inicio de Sesión</h1>
@@ -93,6 +95,12 @@
             });
 
         } catch (err) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: err.message,
+                footer: '<a href="">Why do I have this issue?</a>'
+            });
             console.error(err);
         }
     }
@@ -119,6 +127,12 @@
     async function loginWithMetaMask() {
         const accounts = await window.ethereum.request({method: 'eth_requestAccounts'})
             .catch((e) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: e.message,
+                    footer: '<a href="">Why do I have this issue?</a>'
+                });
                 console.error(e.message)
                 return
             });
@@ -172,11 +186,16 @@
             $('#txtFirma').val(sign);
             console.log(sign);
 
-
             $("#divCard").show();
-
             $("#btnFormHidden").trigger("click");
+
         } catch (err) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: err.message,
+                footer: '<a href="">Why do I have this issue?</a>'
+            });
             console.error(err.message);
             return
         }
