@@ -16,6 +16,7 @@ class clsTemplateviewHome(CreateView):
 
     return context
 
+
 class clsHome(TemplateView):
   template_name = "core/home.html"
   model = UserWallet
@@ -25,6 +26,7 @@ class clsHome(TemplateView):
     context['title'] = "Menu Principal"
 
     return context
+
 
 class clsListFirmas(ListView):
   template_name = "core/list_firmas/list_firmas.html"

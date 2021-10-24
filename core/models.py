@@ -16,3 +16,17 @@ class UserWallet(models.Model):
 
   def __str__(self):
     return 'Firma: {} \n StartDate: {} \n Wallet: {}'.format(self.firma, self.start_date, self.wallet_address)
+
+
+class PoapLink(models.Model):
+  linkpoap = models.FileField(db_column='linkpoaps',
+                              upload_to='poap/%Y/%m/%d',
+                              null=True,
+                              blank=True,
+                              verbose_name='Links POAPS', )
+
+  class Meta:
+    db_table = 'PoapLink'
+
+  def __str__(self):
+    return 'Link POAP: {} '.format(self.linkpoap)
