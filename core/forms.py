@@ -16,6 +16,27 @@ class frmFile(ModelForm):
     }
 
 
+class frmLink(ModelForm):
+  class Meta:
+    model = Link
+    fields = '__all__'
+
+  def save_link(self, commit=True):
+    data = {}
+    form = super()
+    try:
+      if form.is_valid():
+        instance = form.save()
+        data = instance
+      else:
+
+        data['error'] = form.errors
+    except Exception as e:
+      print("No valido")
+      data['error'] = str(e)
+    return data
+
+
 class frmUserWallet(ModelForm):
   class Meta:
     model = UserWallet

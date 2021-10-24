@@ -4,6 +4,7 @@ from .forms import *
 from django.urls import reverse_lazy
 from urllib.request import urlopen
 from django.http.response import JsonResponse
+import random
 
 
 # Create your views here.
@@ -21,6 +22,7 @@ class clsHome(TemplateView):
   def post(request, *args, **kwargs):
     link = PoapLink.objects.all()
     lines = ""
+    randomlink = ""
     for i in link:
       link = str(i)
     localhost = "http://localhost:8000/media/"
@@ -33,12 +35,18 @@ class clsHome(TemplateView):
       for i in lines:
         print(i)
 
+      def selectRandom(lines):
+        return random.choice(lines)
+
+      randomlink = selectRandom(lines)
+      frm = frmLink({'link': lines})
+      data = frm.save_link()
+      print(data, randomlink)
+      return JsonResponse({'data': str(randomlink)})
 
     except Exception as e:
       print(str(e))
       return JsonResponse({'data': str(e)})
-
-    return JsonResponse({'data': lines})
 
 
 class clsSubirFirmas(CreateView):

@@ -38,9 +38,5 @@ class Link(models.Model):
   class Meta:
     db_table = 'Link'
 
-  def save(self, *args, **kwargs):
-    print('save() is called.')
-    super(Link, self).save(*args, **kwargs)
-
   def __str__(self):
     return '{}'.format(self.link)

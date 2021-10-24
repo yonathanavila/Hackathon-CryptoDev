@@ -33,7 +33,13 @@
                   'Content-Type': 'application/json',
                   'X-CSRFToken': csrftoken
               }
-          })
+          }).then(response => response.json())
+              .then(data => {
+                  console.log(data, typeof (data));
+
+                  window.location.href = data[Object.keys(data)[0]];
+              })
+              .catch(console.error);
       });
 
   </script>
