@@ -43,6 +43,7 @@ class clsHome(TemplateView):
         print("Ya se reclamo este POA")
         return JsonResponse({'error': "Ya se reclamo este POAP"})
       else:
+        print(randomlink)
         frm = frmLink({'link': randomlink})
         data = frm.save_link()
         print(data)

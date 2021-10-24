@@ -1,6 +1,10 @@
 {% extends 'core/base.html' %}
 {% block content %}{% csrf_token %}
-  <button type="button" class="btn btn-lg btn-block btn-outline-primary" id="btnReclamar">Reclamar POAP</button>
+  <button class="cybr-btn" id="btnReclamar">
+    >Reclamar POAP<span aria-hidden>_</span>
+    <span aria-hidden class="cybr-btn__glitch">>Reclamar POAP_</span>
+    <span aria-hidden class="cybr-btn__tag">R25</span>
+  </button>
 {% endblock %}
 {% block script %}
   <script>
