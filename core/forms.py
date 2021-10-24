@@ -2,6 +2,12 @@ from .models import *
 from django.forms import *
 
 
+class frmFile(ModelForm):
+  class Meta:
+    model = PoapLink
+    fields = '__all__'
+
+
 class frmUserWallet(ModelForm):
   class Meta:
     model = UserWallet
