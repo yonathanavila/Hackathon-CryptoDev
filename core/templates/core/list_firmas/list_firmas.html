@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+{% load humanize %}
+{% block content %}
+  <div class="container-fluid">
+    <div class="card-primary">
+      <div class="card-header">
+        <h5 class="card-title">Firmas de Usuarios</h5>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Wallet</th>
+              <th scope="col">Firma</th>
+              <th scope="col">Fecha de Firma</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in object_list %}
+              <tr>
+                <td>{{ i.name }}</td>
+                <td>{{ i.wallet_address }}</td>
+                <td>{{ i.firma }}</td>
+                <td>{{ i.start_date|naturaltime }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="{% url 'menu' %}" class="btn btn-primary">Volver</a>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
