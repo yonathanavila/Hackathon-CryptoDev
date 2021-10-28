@@ -182,7 +182,6 @@
     });
 
     $('#signTypedDataV4').on("click", async () => {
-        console.log("Entrooo2");
         const networkId = parseInt(networkDiv.innerHTML, 10);
         const chainId = parseInt(chainIdDiv.innerHTML, 16) || networkId;
         const exampleMessage = '¡Hola de CryptoDevTeam! Firme este mensaje para demostrar que tiene acceso a esta billetera y lo registraremos. Esto no le costará ningún Ether. Para evitar que los piratas informáticos utilicen su billetera.';
@@ -195,8 +194,6 @@
                 params: [msg, from, 'Example password'],
             });
             $('#txtFirma').val(sign);
-            console.log(sign);
-
             $("#divCard").show();
             $("#btnFormHidden").trigger("click");
 

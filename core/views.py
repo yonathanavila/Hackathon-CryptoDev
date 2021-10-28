@@ -40,13 +40,10 @@ class clsHome(TemplateView):
       Link_qs = Link.objects.filter(link=randomlink)
 
       if Link_qs:
-        print("Ya se reclamo este POA")
         return JsonResponse({'error': "Ya se reclamo este POAP"})
       else:
-        print(randomlink)
         frm = frmLink({'link': randomlink})
         data = frm.save_link()
-        print(data)
         return JsonResponse({'data': str(randomlink)})
 
     except Exception as e:
